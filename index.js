@@ -28,7 +28,8 @@ function isGeneratedEmail(email) {
     const excessiveLength = localPart.length > 30;
     const randomPattern = /^[a-zA-Z0-9]{8,}$/; // Long strings of alphanumeric characters
     const leadingNumbersPattern = /^[0-9][a-zA-Z0-9]{7,}$/; // Starts with a number, followed by alphanumeric characters
-    if (excessiveLength || randomPattern.test(localPart) || leadingNumbersPattern.test(localPart)) {
+    const commonGeneratedPatterns = /^(test|user|demo|sample|temp)[0-9]*$/i; // Common generated email patterns
+    if (excessiveLength || randomPattern.test(localPart) || leadingNumbersPattern.test(localPart) || commonGeneratedPatterns.test(localPart)) {
         return true;
     }
 
